@@ -21,7 +21,6 @@ Answer findMaximumSubarray(int[], int, int);
 int main(){
 	int a[] = { 1,2,3,4,5,6 };
 	int chart[16]{ 13,-3,-25,20,-3,-16,-23,18,20,-7,12,-5,-22,15,-4,7 };
-	
 	Answer result = findMaximumSubarray(chart, 0, 15);
 	cout << result.left << "\n";
 	cout << result.right << "\n";
@@ -30,18 +29,11 @@ int main(){
 	cout << result2.left << "\n";
 	cout << result2.right << "\n";
 	cout << result2.sum;
-
-		
-	   
-	
 	return 0;
-
 }
    
 
 Answer findMaxCrossingSubarray(int A[], int low, int mid, int high) {
-
-	
 	int leftSum{ -1 * numeric_limits<int>::max() };
 	int rightSum{ leftSum };
 	int sum{ 0 };
@@ -62,10 +54,10 @@ Answer findMaxCrossingSubarray(int A[], int low, int mid, int high) {
 			maxRight = j;
 		}
 	}
-
 	return Answer(maxLeft, maxRight, leftSum + rightSum);
-
 }
+
+
 
 Answer findMaximumSubarray(int A[], int low, int high) {
 	int mid = (low + high) / 2;
@@ -73,11 +65,9 @@ Answer findMaximumSubarray(int A[], int low, int high) {
 		return Answer(low, high, A[low]);
 	}
 	else {  
-		
 		Answer left = findMaximumSubarray(A, low, mid);
 		Answer right = findMaximumSubarray(A, mid + 1, high);
 		Answer middle = findMaxCrossingSubarray(A, low, mid, high);
-	
 		if (left.sum >= right.sum && left.sum >= middle.sum){
 			return Answer(left.left, left.right, left.sum);
 		}  
@@ -87,16 +77,12 @@ Answer findMaximumSubarray(int A[], int low, int high) {
 		else {
 			return middle;
 		}
-	
-	
-	
 	}
-
-
 }
 
-Answer bruteFindMaximumSubarray(int A[], int low, int high) {
 
+
+Answer bruteFindMaximumSubarray(int A[], int low, int high) {
 	int running{ 0 };
 	int sum{ 0 };
 	int start, end;
@@ -112,16 +98,7 @@ Answer bruteFindMaximumSubarray(int A[], int low, int high) {
 		}
 		running = 0;
 	}
-
 	return Answer(start, end, sum);
-
-
-
-
-
-
-
-
 }
 
 
